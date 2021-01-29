@@ -1,108 +1,45 @@
 function findSmallNums(nums) {
   if (!nums) throw new Error("nums is required");
   
-  const smallNums = [];
- 
-  //forEach
-  nums.forEach(num => {
-    if(num < 1) smallNums.push(num);
-  });
-
-  return smallNums;
-
-  //Other?
+  return nums.filter(num => num < 1);
 }
 
 function findNamesBeginningWith(names, char) {
   if (!names) throw new Error("names is required");
   if (!char) throw new Error("char is required");
   
- 
-  const namesBeginningChar = [];
-
-  //forEach
-  names.forEach(name => {
-    if (name.charAt(0) === char){
-      namesBeginningChar.push(name);
-    }
-  })
-
-  return namesBeginningChar;
-  //Other?
+  return names.filter(name => name.charAt(0) === char);
 }
 
 function findVerbs(words) {
   if (!words) throw new Error("words is required");
   
-  const verbs = [];
-  
-  //forEach
-  words.forEach(word => {
-    if (word.slice(0,3) === "to ") verbs.push(word);
-  });
-
-  return verbs;
-
-  //Other?
+  return words.filter(word => word.slice(0,3) === "to ");
 }
 
 function getIntegers(nums) {
   if (!nums) throw new Error("nums is required");
   
-  const integers = [];
-
-  //forEach
-  nums.forEach(num => {
-    if (Number.isInteger(num)) integers.push(num)
-  });
-
-  return integers;
-
-  //Other?
+  return nums.filter(num => Number.isInteger(num));
 }
 
 function getCities(users) {
   if (!users) throw new Error("users is required");
   
-  const cities = [];
- 
-  //forEach
-  users.forEach(user => cities.push(user.data.city.displayName));
-
-  return cities;
-  
-  //Other?
+  return users.map(user => user.data.city.displayName);
 }
 
 function getSquareRoots(nums) {
   if (!nums) throw new Error("nums is required");
   
-  const squareRoots = [];
-
-  //forEach
-  nums.forEach(num => squareRoots.push(parseFloat(Math.sqrt(num).toFixed(2))))
-
-  return squareRoots;
-
-  //Other?
+  return nums.map(num => parseFloat(Math.sqrt(num).toFixed(2)));
 }
 
 function findSentencesContaining(sentences, str) {
   if (!sentences) throw new Error("sentences is required");
   if (!str) throw new Error("str is required");
   
-  const sentencesWithString = [];
-
-  //forEach
-  sentences.forEach(sentence => {
-    if (sentence.toLowerCase().includes(str.toLowerCase())){
-        sentencesWithString.push(sentence)
-    }
-  });
-
-  return sentencesWithString;
-
-  //Other?
+  return sentences.filter(sentence => sentence.toLowerCase().includes(str.toLowerCase()));
 }
 
 function getLongestSides(triangles) {
@@ -115,10 +52,9 @@ function getLongestSides(triangles) {
 
     let longest = 0;
 
-    triangle.forEach(side => {
-      if (side > longest){
-        longest = side;
-      }
+  // map
+    triangle.map(side => {
+      if (side > longest) longest = side;
     });
 
     longestSides.push(longest);
@@ -126,8 +62,6 @@ function getLongestSides(triangles) {
   });
 
   return longestSides;
-
-  //Other?
 }
 
 module.exports = {
