@@ -44,7 +44,6 @@ function getMiddleCharacter(str) {
 function reverseWord(word) {
   if (word === undefined) throw new Error("word is required");
 
-
   const reversedArray =  word.split(' ').reverse();
 
   const reversedWordsArray = reversedArray.map((elem) => {
@@ -58,13 +57,24 @@ function reverseWord(word) {
 
 function reverseAllWords(words) {
   if (words === undefined) throw new Error("words is required");
+
+  const reversedArray = words.map((elem) => {
+    return elem.split('').reverse().join('');
+  });
   
-  return reversed;
+  return reversedArray;
 }
 
 function countLinuxUsers(users) {
   if (users === undefined) throw new Error("users is required");
-  // Add your code here!
+  
+  const linuxUsers = users.reduce((acc, curr) => {
+
+    return curr.type === "Linux" ? acc + 1 : acc;
+
+  }, 0);
+
+  return linuxUsers;
 }
 
 function getMeanScore(scores) {
