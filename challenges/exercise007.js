@@ -74,7 +74,32 @@ const createRange = (start, end, step=1) => {
  */
 const getScreentimeAlertList = (users, date) => {
   if (users === undefined) throw new Error("users is required");
+  if (users.length < 1) throw new Error("users array is empty");
+
+  const dateRegex = /(\d{4}-\d{2}-\d{2})/
   if (date === undefined) throw new Error("date is required");
+  if (!dateRegex.test(date)) throw new Error("date not formatted YYYY-MM-DD")
+
+  const usersOverLimit = [];
+
+  for (let i = 0; i < users.length; i++){
+ 
+    for (let j = 0; j < users[i].screenTime.length; j++){
+      let total = 0;
+      if (users[i].screenTime[j].date === date){
+
+        for (key in users[i].screenTime[j].usage){
+          
+          total = total + users[i].screenTime[j].usage[key];
+        }
+        
+        if (total > 100) usersOverLimit.push(users[i].username)
+    }
+  }
+  }
+
+  return usersOverLimit;
+
 };
 
 /**
