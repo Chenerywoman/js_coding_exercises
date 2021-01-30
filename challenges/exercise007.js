@@ -4,6 +4,16 @@
  */
 const sumDigits = n => {
   if (n === undefined) throw new Error("n is required");
+
+  const numberArray = n.toString().split('');
+
+  if(numberArray.length === 1) return n;
+
+  return numberArray.reduce((acc, curr) => {
+    curr === "." ? curr = 0 : curr = Number.parseInt(curr)
+  
+    return acc + curr;
+  },0);
 };
 
 /**
