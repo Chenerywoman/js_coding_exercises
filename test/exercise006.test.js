@@ -178,7 +178,7 @@ describe("createMatrix", () => {
 
 });
 
-xdescribe("areWeCovered", () => {
+describe("areWeCovered", () => {
     test("it throws an error if parameters not passed in", () => {
         expect(() => {
             areWeCovered()
@@ -213,7 +213,26 @@ xdescribe("areWeCovered", () => {
 
     });
 
-    // 3 staff working
-    // more than 3 staff working
+    test("it returns true if there are 3 staff scheduled to work", () => {
+        const staff = [
+            {name : "Gary", rota: ["Monday", "Tuesday"]},
+            {name : "Paul", rota: ["Monday", "Tuesday"]},
+            {name : "Sally", rota: ["Monday", "Tuesday"]},
+        ]
+        expect(areWeCovered(staff, "Monday")).toBe(true);
+        expect(areWeCovered(staff, "Tuesday")).toBe(true);
+    });
+
+    test("it returns true if there are >3 staff scheduled to work", () => {
+        const staff = [
+            {name : "Gary", rota: ["Monday", "Tuesday"]},
+            {name : "Paul", rota: ["Monday", "Tuesday"]},
+            {name : "Sally", rota: ["Monday", "Tuesday"]},
+            {name : "Ben", rota: ["Monday", "Tuesday"]},
+            {name : "Jess", rota: ["Monday", "Tuesday"]},
+        ]
+        expect(areWeCovered(staff, "Monday")).toBe(true);
+        expect(areWeCovered(staff, "Tuesday")).toBe(true);
+    });
 
 });
