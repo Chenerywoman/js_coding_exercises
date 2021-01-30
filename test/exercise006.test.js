@@ -154,6 +154,7 @@ describe("createMatrix", () => {
 
     it("returns an empty array when passed the argument 0", () =>{
         expect(createMatrix(0, "foo")).toEqual([]);
+        expect(createMatrix(0, "bar")[0].length).toBe(undefined);
     });
 
     it("returns a matrix of 1 * 1 when passed 1", () => {
@@ -165,7 +166,8 @@ describe("createMatrix", () => {
             [
                 ["foo", "foo"],
                 ["foo", "foo"]
-            ])
+            ]);
+        expect(createMatrix(2, "foo")[1].length).toBe(2);
     });
     it("returns a matrix of 3 * 3 when passed 1", () => {
         expect(createMatrix(3, "bar")).toEqual(
@@ -174,6 +176,7 @@ describe("createMatrix", () => {
                 ["bar", "bar", "bar"],
                 ["bar", "bar", "bar"],
             ])
+        expect(createMatrix(3, "foo")[2].length).toBe(3);
     });
 
 });
