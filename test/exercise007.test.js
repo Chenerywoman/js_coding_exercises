@@ -241,3 +241,20 @@ describe("getScreentimeAlertList", () => {
         expect(getScreentimeAlertList(users2, "2020-05-04")).toEqual([])
     })
 });
+
+describe("hextoRGB", () => {
+    it("throws an error if a string is not passed into the function, or is wrongly formatted", () => {
+
+        expect(() => {
+            hexToRGB()
+        }).toThrow("hexStr is required");
+
+        expect(() => {
+            hexToRGB("#FF113")
+        }).toThrow("hex colour not formatted #FF1133");
+
+        expect(() => {
+            hexToRGB("#FF113d")
+        }).toThrow("hex colour not formatted #FF1133");
+    });
+});

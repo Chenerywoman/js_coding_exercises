@@ -103,7 +103,7 @@ const getScreentimeAlertList = (users, date) => {
 };
 
 /**
- * This function will receive a hexadecimal color code in the format #FF1133. A hexadecimal code is a number written in hexadecimal notation, i.e. base 16. If you want to know more about hexadecimal notation:
+//  * This function will receive a hexadecimal color code in the format #FF1133. A hexadecimal code is a number written in hexadecimal notation, i.e. base 16. If you want to know more about hexadecimal notation:
  * https://www.youtube.com/watch?v=u_atXp-NF6w
  * For colour codes, the first 2 chars (FF in this case) represent the amount of red, the next 2 chars (11) represent the amound of green, and the last 2 chars (33) represent the amount of blue.
  * Colours can also be represented in RGB format, using decimal notation.
@@ -113,7 +113,9 @@ const getScreentimeAlertList = (users, date) => {
  * @param {String} str
  */
 const hexToRGB = hexStr => {
+  const hexRegex = /(#[0-9A-F]{6})/
   if (hexStr === undefined) throw new Error("hexStr is required");
+  if (!hexStr.match(hexRegex)) throw new Error("hex colour not formatted #FF1133")
 };
 
 /**
