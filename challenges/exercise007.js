@@ -24,9 +24,23 @@ const sumDigits = n => {
  * @param {Number} end
  * @param {Number} step
  */
-const createRange = (start, end, step) => {
+const createRange = (start, end, step=1) => {
   if (start === undefined) throw new Error("start is required");
   if (end === undefined) throw new Error("end is required");
+
+  const arr = []
+
+  if (end > start){
+    for (let i = start; i < end + 1; i = i + step){
+      arr.push(i);
+    }
+  } else {
+    for (let i = start; i > end - 1; i = i - step){
+      arr.push(i);
+    }
+  }
+  
+  return arr;
 };
 
 /**
