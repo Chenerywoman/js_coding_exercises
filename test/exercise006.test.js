@@ -130,14 +130,50 @@ describe("isItPrime", () => {
 
 });
 
-xdescribe("createMatrix", () => {
-    const result = createMatrix(1);
-    const expect  = 
-    it("returns an empty array when passed the argument 0", () =>{
+describe("createMatrix", () => {
+
+    it("throws an error if either of the parameters are not passed in (undefined)", () => {
+        expect(() => {
+            createMatrix();
+        }).toThrow("n is required")
+        expect(() => {
+            createMatrix(5);
+        }).toThrow("fill is required")
 
     });
+
+    it("throws an error if either of the parameters are of the wrong type", () => {
+        expect(() => {
+            createMatrix("4", "boo");
+        }).toThrow("n must be a number")
+        expect(() => {
+            createMatrix(5, 7);
+        }).toThrow("fill must be a string")
+
+    });
+
+    it("returns an empty array when passed the argument 0", () =>{
+        expect(createMatrix(0, "foo")).toEqual([]);
+    });
+
     it("returns a matrix of 1 * 1 when passed 1", () => {
         expect(createMatrix(1, "foo")).toEqual([["foo"]])
+    });
+
+    it("returns a matrix of 2 * 2 when passed 1", () => {
+        expect(createMatrix(2, "foo")).toEqual(
+            [
+                ["foo", "foo"],
+                ["foo", "foo"]
+            ])
+    });
+    it("returns a matrix of 3 * 3 when passed 1", () => {
+        expect(createMatrix(3, "bar")).toEqual(
+            [
+                ["bar", "bar", "bar"],
+                ["bar", "bar", "bar"],
+                ["bar", "bar", "bar"],
+            ])
     });
 
 });
