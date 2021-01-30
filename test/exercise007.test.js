@@ -257,4 +257,18 @@ describe("hextoRGB", () => {
             hexToRGB("#FF113d")
         }).toThrow("hex colour not formatted #FF1133");
     });
+
+    it("tranforms a given hex code into an RGB code in the format rgb(255,17,51", () => {
+        expect(hexToRGB("#FFFFFF")).toBe("rgb(255,255,255)")
+        expect(hexToRGB("#FF0000")).toBe("rgb(255,0,0)")
+        expect(hexToRGB("#0000FF")).toBe("rgb(0,0,255)")
+        expect(hexToRGB("#00FF00")).toBe("rgb(0,255,0)")
+        expect(hexToRGB("#FF00FF")).toBe("rgb(255,0,255)")
+        expect(hexToRGB("#00FFFF")).toBe("rgb(0,255,255)")
+        expect(hexToRGB("#66FF66")).toBe("rgb(102,255,102)")
+        expect(hexToRGB("#6666FF")).toBe("rgb(102,102,255)")
+        expect(hexToRGB("#CC00CC")).toBe("rgb(204,0,204)")
+        expect(hexToRGB("#000000")).toBe("rgb(0,0,0)")
+        expect(hexToRGB("#FFCCCC")).toBe("rgb(255,204,204)")
+    });
 });

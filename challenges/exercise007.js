@@ -116,6 +116,15 @@ const hexToRGB = hexStr => {
   const hexRegex = /(#[0-9A-F]{6})/
   if (hexStr === undefined) throw new Error("hexStr is required");
   if (!hexStr.match(hexRegex)) throw new Error("hex colour not formatted #FF1133")
+
+  const redHex = hexStr.slice(1, 3);
+  const redRgb = parseInt(redHex, 16);
+  const greenHex = hexStr.slice(3, 5);
+  const greenRgb = parseInt(greenHex, 16);
+  const blueHex = hexStr.slice(5);
+  const blueRgb = parseInt(blueHex, 16);
+
+  return `rgb(${redRgb},${greenRgb},${blueRgb})`
 };
 
 /**
