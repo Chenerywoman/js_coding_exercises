@@ -8,7 +8,7 @@ const sumMultiples = arr => {
   if (arr === undefined) throw new Error("arr is required");
   if (!Array.isArray(arr)) throw new Error("An array is required");
   return arr.reduce((acc, curr) => {
-   return curr % 3 === 0 || curr % 5 === 0 ? acc + curr : acc;
+    return curr % 3 === 0 || curr % 5 === 0 ? acc + curr : acc;
   }, 0);
 };
 
@@ -22,7 +22,7 @@ const isValidDNA = str => {
 
   const regex = /(C|G|T|A)/
 
-  for (let i = 0; i < str.length; i++ ){
+  for (let i = 0; i < str.length; i++) {
     if (!str[i].match(regex)) return false;
   }
   return true;
@@ -38,20 +38,25 @@ const getComplementaryDNA = str => {
   if (str === undefined) throw new Error("str is required");
 
   const regex = /(C|G|T|A)/
-  for (let i = 0; i < str.length; i++ ){
+  for (let i = 0; i < str.length; i++) {
     if (!str[i].match(regex)) throw new Error("invalid DNA string")
   }
 
-  const pairs = {A: "T", C: "G", T: "A", G: "C"};
+  const pairs = {
+    A: "T",
+    C: "G",
+    T: "A",
+    G: "C"
+  };
 
   let DNAPairs = "";
-  for (let i = 0; i < str.length; i++){
+  for (let i = 0; i < str.length; i++) {
     DNAPairs = DNAPairs + pairs[str[i]]
   }
 
   return DNAPairs;
 
- 
+
 };
 
 /**
@@ -68,10 +73,10 @@ const isItPrime = n => {
 
   let number = 3;
 
-  while (number < n){
+  while (number < n) {
 
     if (n % number === 0) return false;
-    number +=2;
+    number += 2;
 
   }
 
@@ -99,14 +104,14 @@ const createMatrix = (n, fill) => {
 
   const outerArray = [];
 
-    for (let i = 0; i < n; i++){
-      outerArray.push (Array(n).fill(fill))
-    }
+  for (let i = 0; i < n; i++) {
+    outerArray.push(Array(n).fill(fill))
+  }
 
-    return outerArray;
+  return outerArray;
 
-   }
- 
+}
+
 /**
  * This function takes an array of staff objects in the format:
  * [
@@ -126,7 +131,7 @@ const areWeCovered = (staff, day) => {
 
   const staffOnRota = staff.reduce((acc, worker) => {
     return worker.rota.filter(weekday => weekday === day).length === 1 ? acc + 1 : acc;
-  },0);
+  }, 0);
 
   return staffOnRota >= 3 ? true : false;
 };

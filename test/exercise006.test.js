@@ -2,8 +2,8 @@ const {
     sumMultiples,
     isValidDNA,
     getComplementaryDNA,
-    isItPrime, 
-    createMatrix, 
+    isItPrime,
+    createMatrix,
     areWeCovered
 } = require('../challenges/exercise006');
 
@@ -72,7 +72,7 @@ describe("isValidDNA", () => {
 });
 
 describe("getComplementaryDNA", () => {
-    test("throws an error is no string is passed" , () => {
+    test("throws an error is no string is passed", () => {
         expect(() => {
             getComplementaryDNA();
         }).toThrow("str is required");
@@ -152,13 +152,15 @@ describe("createMatrix", () => {
 
     });
 
-    it("returns an empty array when passed the argument 0", () =>{
+    it("returns an empty array when passed the argument 0", () => {
         expect(createMatrix(0, "foo")).toEqual([]);
         expect(createMatrix(0, "bar")[0].length).toBe(undefined);
     });
 
     it("returns a matrix of 1 * 1 when passed 1", () => {
-        expect(createMatrix(1, "foo")).toEqual([["foo"]])
+        expect(createMatrix(1, "foo")).toEqual([
+            ["foo"]
+        ])
     });
 
     it("returns a matrix of 2 * 2 when passed 1", () => {
@@ -202,11 +204,22 @@ describe("areWeCovered", () => {
     });
 
     test("it returns false if there are staff but < 3 scheduled to work", () => {
-        const staff = [
-            {name : "Gary", rota: ["Monday", "Tuesday"]},
-            {name : "Paul", rota: ["Monday", "Tuesday"]},
-            {name : "Sally", rota: ["Monday", "Tuesday"]},
-            {name : "Jess", rota: ["Monday", "Tuesday"]},
+        const staff = [{
+                name: "Gary",
+                rota: ["Monday", "Tuesday"]
+            },
+            {
+                name: "Paul",
+                rota: ["Monday", "Tuesday"]
+            },
+            {
+                name: "Sally",
+                rota: ["Monday", "Tuesday"]
+            },
+            {
+                name: "Jess",
+                rota: ["Monday", "Tuesday"]
+            },
         ]
         expect(areWeCovered(staff, "Wednesday")).toBe(false);
         expect(areWeCovered(staff, "Thursday")).toBe(false);
@@ -217,22 +230,44 @@ describe("areWeCovered", () => {
     });
 
     test("it returns true if there are 3 staff scheduled to work", () => {
-        const staff = [
-            {name : "Gary", rota: ["Monday", "Tuesday"]},
-            {name : "Paul", rota: ["Monday", "Tuesday"]},
-            {name : "Sally", rota: ["Monday", "Tuesday"]},
+        const staff = [{
+                name: "Gary",
+                rota: ["Monday", "Tuesday"]
+            },
+            {
+                name: "Paul",
+                rota: ["Monday", "Tuesday"]
+            },
+            {
+                name: "Sally",
+                rota: ["Monday", "Tuesday"]
+            },
         ]
         expect(areWeCovered(staff, "Monday")).toBe(true);
         expect(areWeCovered(staff, "Tuesday")).toBe(true);
     });
 
     test("it returns true if there are >3 staff scheduled to work", () => {
-        const staff = [
-            {name : "Gary", rota: ["Monday", "Tuesday"]},
-            {name : "Paul", rota: ["Monday", "Tuesday"]},
-            {name : "Sally", rota: ["Monday", "Tuesday"]},
-            {name : "Ben", rota: ["Monday", "Tuesday"]},
-            {name : "Jess", rota: ["Monday", "Tuesday"]},
+        const staff = [{
+                name: "Gary",
+                rota: ["Monday", "Tuesday"]
+            },
+            {
+                name: "Paul",
+                rota: ["Monday", "Tuesday"]
+            },
+            {
+                name: "Sally",
+                rota: ["Monday", "Tuesday"]
+            },
+            {
+                name: "Ben",
+                rota: ["Monday", "Tuesday"]
+            },
+            {
+                name: "Jess",
+                rota: ["Monday", "Tuesday"]
+            },
         ]
         expect(areWeCovered(staff, "Monday")).toBe(true);
         expect(areWeCovered(staff, "Tuesday")).toBe(true);
