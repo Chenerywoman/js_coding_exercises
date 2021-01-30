@@ -79,7 +79,7 @@ const getWordFrequencies = str => {
 
   for (let i = 0; i < arr.length; i++){
 
-    const regex = /(\.|\?|\!|\:|;|,)/
+    const regex = /(\.|\?|!|:|;|,)/
     let word = arr[i].toLowerCase();
    
     word = word.charAt(word.length - 1).match(regex) ? word.slice(0, word.length - 1) : word;
