@@ -272,3 +272,75 @@ describe("hextoRGB", () => {
         expect(hexToRGB("#FFCCCC")).toBe("rgb(255,204,204)")
     });
 });
+
+describe("findWinner", () => {
+    it("throws an error if no argument passed in (undefined)", () => {
+        expect(() => {
+            findWinner()
+        }).toThrow("board is required");
+    });
+
+    it("throws an error if an array containing 3 arrays of 3 is not passed in", () => {
+        expect(() => {
+            findWinner([])
+        }).toThrow("board not correct shape");
+    });
+
+    it('throws an error if board contains invalid characters: not "X", "0" or null' , () => {
+        const wrongCharacters = [
+                ["X", "0", null],
+                ["X", "banana", "0"],
+                ["X", null, "0"]
+            ]
+        
+        expect(() => {
+            findWinner(wrongCharacters)
+        }).toThrow("invalid pieces on board");
+    });
+
+    it("returns a winner with 3 in a row", () => {
+        const XWins = [
+            ["X", "X", "X"],
+            ["0", "0", null],
+            [null, "0", null]
+        ]
+        expect(findWinner(XWins)).toBe("X")
+    });
+
+    it("returns a winner with 3 in a column", () => {
+        const NoughtsWins = [
+            ["0", "X", "X"],
+            ["0", null, "X"],
+            ["0", null, null]
+        ]
+        expect(findWinner(NoughtsWins)).toBe("0");
+    });
+
+    it("returns a winner with 3 in a diagonal line", () => {
+        const diagonalWinner = [
+            ["X", "0", "0"],
+            ["0", "X", null],
+            ["0", null, "X"]
+        ]
+        expect(findWinner(diagonalWinner)).toBe("X");
+    });
+
+    it("does not return a winner with 3 nulls in a line", () => {
+        const nullWinner = [
+            [null, "0", "0"],
+            ["0", null, null],
+            ["0", null, null]
+        ]
+        expect(findWinner(nullWinner)).toBe("no winner");
+    });
+
+    it("does not return a winner if not 3 in a line", () => {
+        const noWinner = [
+            ["X", "0", "0"],
+            ["0", "X", "X"],
+            ["0", "X", "0"]
+        ]
+        expect(findWinner(noWinner)).toBe("no winner");
+    });
+})
+

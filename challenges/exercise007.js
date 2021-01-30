@@ -7,13 +7,13 @@ const sumDigits = n => {
 
   const numberArray = n.toString().split('');
 
-  if(numberArray.length === 1) return n;
+  if (numberArray.length === 1) return n;
 
   return numberArray.reduce((acc, curr) => {
     curr === "." ? curr = 0 : curr = Number.parseInt(curr)
-  
+
     return acc + curr;
-  },0);
+  }, 0);
 };
 
 /**
@@ -24,22 +24,22 @@ const sumDigits = n => {
  * @param {Number} end
  * @param {Number} step
  */
-const createRange = (start, end, step=1) => {
+const createRange = (start, end, step = 1) => {
   if (start === undefined) throw new Error("start is required");
   if (end === undefined) throw new Error("end is required");
 
   const arr = []
 
-  if (end > start){
-    for (let i = start; i < end + 1; i = i + step){
+  if (end > start) {
+    for (let i = start; i < end + 1; i = i + step) {
       arr.push(i);
     }
   } else {
-    for (let i = start; i > end - 1; i = i - step){
+    for (let i = start; i > end - 1; i = i - step) {
       arr.push(i);
     }
   }
-  
+
   return arr;
 };
 
@@ -82,20 +82,20 @@ const getScreentimeAlertList = (users, date) => {
 
   const usersOverLimit = [];
 
-  for (let i = 0; i < users.length; i++){
- 
-    for (let j = 0; j < users[i].screenTime.length; j++){
-      let total = 0;
-      if (users[i].screenTime[j].date === date){
+  for (let i = 0; i < users.length; i++) {
 
-        for (key in users[i].screenTime[j].usage){
-          
+    for (let j = 0; j < users[i].screenTime.length; j++) {
+      let total = 0;
+      if (users[i].screenTime[j].date === date) {
+
+        for (key in users[i].screenTime[j].usage) {
+
           total = total + users[i].screenTime[j].usage[key];
         }
-        
+
         if (total > 100) usersOverLimit.push(users[i].username)
+      }
     }
-  }
   }
 
   return usersOverLimit;
@@ -138,7 +138,50 @@ const hexToRGB = hexStr => {
  * @param {Array} board
  */
 const findWinner = board => {
+
+  console.log(board)
   if (board === undefined) throw new Error("board is required");
+  if (board.length !== 3 || board[0].length !== 3 || board[1].length !== 3 || board[2].length !== 3) throw new Error("board not correct shape");
+
+  let winner = "";
+  
+  // rows
+  for (let i = 0; i < board.length; i++) {
+
+    // check for invalid board entry
+    for (let j = 0; j < board[i].length; j++) {
+      if (board[i][j] !== "X" && board[i][j] !== "0" && board[i][j] !== null) {
+        throw new Error("invalid pieces on board")
+      }
+    }
+
+    if (board[i][0] === board[i][1] && board[i][1] === board[i][2]) {
+      winner = board[i][0];
+    }
+  }
+
+  // columns
+  for (let i = 0; i < board[0].length; i++) {
+
+    const column = [];
+    
+    for (let j = 0; j < board.length; j++) {
+        column.push(board[j][i])
+      }
+
+      if (column[0] === column[1] && column[1] === column[2]) {
+        winner = column[0];
+      }
+    }
+
+    // diagonals
+    if (board[0][0] === board[1][1] && board[1][1] === board[2][2] || board[0][2] === board[1][1] && board[1][1] === board[2][0]){
+      winner = board[1][1]
+    }
+
+    if (winner === "" || winner === null) winner = "no winner";
+
+    return winner;
 };
 
 module.exports = {
