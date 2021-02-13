@@ -59,3 +59,6 @@ typings/
 
 # next.js build output
 .next
+
+# ths is the folder which contains launch.json - created when settting up Jest debugging
+.vscode
