@@ -88,7 +88,7 @@ const getScreentimeAlertList = (users, date) => {
       let total = 0;
       if (users[i].screenTime[j].date === date) {
 
-        for (key in users[i].screenTime[j].usage) {
+        for (let key in users[i].screenTime[j].usage) {
 
           total = total + users[i].screenTime[j].usage[key];
         }
