@@ -133,7 +133,7 @@ const areWeCovered = (staff, day) => {
     return worker.rota.filter(weekday => weekday === day).length === 1 ? acc + 1 : acc;
   }, 0);
 
-  return staffOnRota >= 3 ? true : false;
+  return staffOnRota >= 3;
 };
 
 module.exports = {
