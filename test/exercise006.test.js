@@ -157,6 +157,8 @@ describe("createMatrix", () => {
         expect(createMatrix(0, "bar")).toEqual(Array(0));
         expect(Array.isArray(createMatrix(0, "bar"))).toBe(true);
         expect(createMatrix(0, "bar")).toHaveLength(0);
+        expect(createMatrix(0, "bar").length).toBe(0);
+        expect(createMatrix(0, "bar")[0]).toBe(undefined);
     });
 
     it("returns a matrix of 1 * 1 when passed 1", () => {
